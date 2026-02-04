@@ -3,12 +3,13 @@ const router = express.Router();
 const controller = require('../controllers/articleController');
 const requireAuth = require('../middleware/authMiddleware');
 
-// Public
+// Public Routes (Anyone can see)
 router.get('/', controller.getAllArticles);
+router.get('/:id', controller.getArticleById);
 
-// Protected
+// Protected Routes (Only Admins)
 router.post('/', requireAuth, controller.createArticle);
-// router.put('/:id', requireAuth, controller.updateArticle); 
-// router.delete('/:id', requireAuth, controller.deleteArticle);
+router.put('/:id', requireAuth, controller.updateArticle);
+router.delete('/:id', requireAuth, controller.deleteArticle);
 
 module.exports = router;

@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const controller = require('../../server/controllers/memberController');
+const controller = require('../controllers/memberController');
 
-// Public
+// Public Route
 router.get('/', controller.getAllMembers);
 
 module.exports = router;
