@@ -11,6 +11,20 @@ const app = express();
 app.use(cors());                     // Allow Frontend to talk to us
 app.use(express.json());             // IMPORTANT: Allows reading JSON from requests
 
+// === SECURITY MIDDLEWARE ===
+// This function runs before the main route handler
+const requireAuth = (req, res, next) => {
+    // Get the token from the "Authorization" header
+    const authHeader = req.headers['authorization'];
+
+    // Check if it matches the token we give out during Login
+    if (authHeader === 'fake-jwt-token') {
+        next(); // Success! Go to the next function (the route)
+    } else {
+        res.status(401).json({ message: "Access Denied: Please Log In" });
+    }
+};
+
 // 3. CONNECT TO DATABASE
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL, // Read from .env
@@ -90,7 +104,7 @@ app.post('/login', (req, res) => {
 });
 
 // POST /articles
-app.post('/articles', async (req, res) => {
+app.post('/articles', requireAuth, async (req, res) => {
     try {
         // Get all these fields from the Frontend
         const { title, type, author, content, image_url, tags } = req.body;
@@ -107,7 +121,7 @@ app.post('/articles', async (req, res) => {
 });
 
 // DELETE /articles/:id
-app.delete('/articles/:id', async (req, res) => {
+app.delete('/articles/:id', requireAuth, async (req, res) => {
     try {
         const { id } = req.params;
         await pool.query("DELETE FROM articles WHERE id = $1", [id]);
@@ -118,7 +132,7 @@ app.delete('/articles/:id', async (req, res) => {
 });
 
 // PUT /articles/:id
-app.put('/articles/:id', async (req, res) => {
+app.put('/articles/:id', requireAuth, async (req, res) => {
     try {
         const { id } = req.params;
         const { title, type, author, content, image_url, tags } = req.body;
@@ -142,7 +156,16 @@ app.get('/', (req, res) => {
 });
 
 // 5. START SERVER
-const PORT = 5000;
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+const PORT = 3000;
+
+app.listen(PORT, async () => {
+    console.log(`\n✅ Server is running on port ${PORT}`);
+
+    // The "Knock Knock" Check
+    try {
+        await pool.query('SELECT 1'); // Asks the DB "Are you there?"
+        console.log("✅ Database connected successfully");
+    } catch (err) {
+        console.error("❌ Database failed:", err.message);
+    }
 });

@@ -1,38 +1,26 @@
-### 1. Check if Server is Alive
-GET http://127.0.0.1:5000/
+### TEST 1: The PM Check (Is the server alive?)
+GET http://127.0.0.1:3000
 
-### 2. Login (Change credentials to match your code)
-POST http://127.0.0.1:5000/login
+### TEST 2: The Hacker (Should fail with 401)
+POST http://127.0.0.1:3000/articles
 Content-Type: application/json
 
 {
-    "email": "PLACEHOLDER_EMAIL",
-    "password": "PLACEHOLDER_PASSWORD"
+    "title": "HACKED!",
+    "type": "Event",
+    "author": "Hacker",
+    "content": "I am deleting your database."
 }
 
-### 3. Create Article
-POST http://127.0.0.1:5000/articles
+### TEST 3: The Admin (Should success with 200)
+POST http://127.0.0.1:3000/articles
 Content-Type: application/json
+Authorization: fake-jwt-token
 
 {
-    "title": "My Test Event",
+    "title": "Safe Article",
     "type": "Event",
-    "author": "Backend Dev",
-    "content": "This is a test content.",
-    "tags": ["Testing"]
-}
-
-### 4. Get All Articles
-GET http://127.0.0.1:5000/articles
-
-### 5. Update Article (Replace '1' with actual ID from step 4)
-PUT http://127.0.0.1:5000/articles/1
-Content-Type: application/json
-
-{
-    "title": "UPDATED TITLE",
-    "type": "Event",
-    "author": "Backend Dev",
-    "content": "Content updated.",
-    "tags": ["Updated"]
+    "author": "Admin",
+    "content": "This is a secure post.",
+    "tags": ["Security"]
 }
