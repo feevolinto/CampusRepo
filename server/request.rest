@@ -1,26 +1,8 @@
-### TEST 1: The PM Check (Is the server alive?)
-GET http://127.0.0.1:3000
-
-### TEST 2: The Hacker (Should fail with 401)
-POST http://127.0.0.1:3000/articles
+### TEST: Login with Database Credentials
+POST http://127.0.0.1:3000/login
 Content-Type: application/json
 
 {
-    "title": "HACKED!",
-    "type": "Event",
-    "author": "Hacker",
-    "content": "I am deleting your database."
-}
-
-### TEST 3: The Admin (Should success with 200)
-POST http://127.0.0.1:3000/articles
-Content-Type: application/json
-Authorization: fake-jwt-token
-
-{
-    "title": "Safe Article",
-    "type": "Event",
-    "author": "Admin",
-    "content": "This is a secure post.",
-    "tags": ["Security"]
+    "email": "admin@upmin.edu.ph",
+    "password": "admin"
 }

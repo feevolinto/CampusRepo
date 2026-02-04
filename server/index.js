@@ -88,18 +88,36 @@ app.get('/members', async (req, res) => {
     }
 });
 
-// POST /login
-app.post('/login', (req, res) => {
-    const { email, password } = req.body; // Read JSON sent by Frontend
+// POST /login (Database Version)
+app.post('/login', async (req, res) => {
+    try {
+        const { email, password } = req.body;
 
-    // REPLACE THESE WITH YOUR REAL GROUP SECRETS
-    const ADMIN_EMAIL = "PLACEHOLDER_EMAIL";
-    const ADMIN_PASSWORD = "PLACEHOLDER_PASSWORD";
+        // 1. Ask the Database: "Find me an admin with this email"
+        const result = await pool.query(
+            "SELECT * FROM admins WHERE email = $1", 
+            [email]
+        );
 
-    if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
-        res.json({ success: true, token: "fake-jwt-token" });
-    } else {
-        res.status(401).json({ success: false, message: "Invalid Credentials" });
+        // 2. Check if user exists
+        if (result.rows.length === 0) {
+            return res.status(401).json({ success: false, message: "User not found" });
+        }
+
+        const admin = result.rows[0]; // The first result found
+
+        // 3. Check if password matches
+        if (admin.password === password) {
+            // Success! Give them the badge.
+            res.json({ success: true, token: "fake-jwt-token" });
+        } else {
+            // Wrong password
+            res.status(401).json({ success: false, message: "Invalid Password" });
+        }
+
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server Error");
     }
 });
 
