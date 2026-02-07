@@ -1,8 +1,192 @@
-### TEST: Login with Database Credentials
-POST http://127.0.0.1:3000/login
+### VARIABLES
+@baseUrl = https://campusrepo.onrender.com
+
+### ---------------------------------------------------
+### BATCH EVENTS (GANAPS)
+### ---------------------------------------------------
+
+### 1. CS General Assembly 2024
+POST {{baseUrl}}/articles
 Content-Type: application/json
+Authorization: fake-jwt-token
 
 {
-    "email": "admin@upmin.edu.ph",
-    "password": "admin"
+    "title": "CS General Assembly 2024",
+    "type": "Event",
+    "author": "Admin",
+    "content": "Write-up coming soon...",
+    "image_url": "[https://placehold.co/600x400?text=GA+2024](https://placehold.co/600x400?text=GA+2024)",
+    "tags": ["Assembly", "Community"]
+}
+
+### 2. CS Freshmen Bloc Encounter 2025
+POST {{baseUrl}}/articles
+Content-Type: application/json
+Authorization: fake-jwt-token
+
+{
+    "title": "CS Freshmen Bloc Encounter 2025",
+    "type": "Event",
+    "author": "Admin",
+    "content": "Write-up coming soon...",
+    "image_url": "[https://placehold.co/600x400?text=Freshmen+Bloc](https://placehold.co/600x400?text=Freshmen+Bloc)",
+    "tags": ["Assembly", "Community"]
+}
+
+### 3. Cloud Heist
+POST {{baseUrl}}/articles
+Content-Type: application/json
+Authorization: fake-jwt-token
+
+{
+    "title": "Cloud Heist: AWS Cloud Club Capture the Flag",
+    "type": "Event",
+    "author": "Admin",
+    "content": "Write-up coming soon...",
+    "image_url": "[https://placehold.co/600x400?text=Cloud+Heist](https://placehold.co/600x400?text=Cloud+Heist)",
+    "tags": ["Assembly", "Community"]
+}
+
+### 4. DurianPy 2025
+POST {{baseUrl}}/articles
+Content-Type: application/json
+Authorization: fake-jwt-token
+
+{
+    "title": "DurianPy: Pycon Davao 2025",
+    "type": "Event",
+    "author": "Admin",
+    "content": "Write-up coming soon...",
+    "image_url": "[https://placehold.co/600x400?text=DurianPy](https://placehold.co/600x400?text=DurianPy)",
+    "tags": ["Assembly", "Community"]
+}
+
+### 5. Bugkos 2025
+POST {{baseUrl}}/articles
+Content-Type: application/json
+Authorization: fake-jwt-token
+
+{
+    "title": "Bugkos 2025",
+    "type": "Event",
+    "author": "Admin",
+    "content": "Write-up coming soon...",
+    "image_url": "[https://placehold.co/600x400?text=Bugkos+2025](https://placehold.co/600x400?text=Bugkos+2025)",
+    "tags": ["Assembly", "Community"]
+}
+
+### 6. AI Hackathon
+POST {{baseUrl}}/articles
+Content-Type: application/json
+Authorization: fake-jwt-token
+
+{
+    "title": "AI Hackathon: MSME Edition",
+    "type": "Event",
+    "author": "Admin",
+    "content": "Write-up coming soon...",
+    "image_url": "[https://placehold.co/600x400?text=AI+Hackathon](https://placehold.co/600x400?text=AI+Hackathon)",
+    "tags": ["Assembly", "Community"]
+}
+
+### 7. DevFest Davao 2025
+POST {{baseUrl}}/articles
+Content-Type: application/json
+Authorization: fake-jwt-token
+
+{
+    "title": "Google Developer Group Davao: DevFest Davao 2025",
+    "type": "Event",
+    "author": "Admin",
+    "content": "Write-up coming soon...",
+    "image_url": "[https://placehold.co/600x400?text=DevFest+2025](https://placehold.co/600x400?text=DevFest+2025)",
+    "tags": ["Assembly", "Community"]
+}
+
+### 8. AWS Student Community Day
+POST {{baseUrl}}/articles
+Content-Type: application/json
+Authorization: fake-jwt-token
+
+{
+    "title": "AWS Student Community Day 2025",
+    "type": "Event",
+    "author": "Admin",
+    "content": "Write-up coming soon...",
+    "image_url": "[https://placehold.co/600x400?text=AWS+Community](https://placehold.co/600x400?text=AWS+Community)",
+    "tags": ["Assembly", "Community"]
+}
+
+### 9. AWSUG Year-End
+POST {{baseUrl}}/articles
+Content-Type: application/json
+Authorization: fake-jwt-token
+
+{
+    "title": "AWSUG Davao Year-End Gathering",
+    "type": "Event",
+    "author": "Admin",
+    "content": "Write-up coming soon...",
+    "image_url": "[https://placehold.co/600x400?text=AWSUG+Gathering](https://placehold.co/600x400?text=AWSUG+Gathering)",
+    "tags": ["Assembly", "Community"]
+}
+
+### 10. AWS 2026 Kickstarter
+POST {{baseUrl}}/articles
+Content-Type: application/json
+Authorization: fake-jwt-token
+
+{
+    "title": "AWS 2026 Kickstarter Focused Group Meetup",
+    "type": "Event",
+    "author": "Admin",
+    "content": "Write-up coming soon...",
+    "image_url": "[https://placehold.co/600x400?text=AWS+Kickstarter](https://placehold.co/600x400?text=AWS+Kickstarter)",
+    "tags": ["Assembly", "Community"]
+}
+
+### 11. DurianPy Tricks
+POST {{baseUrl}}/articles
+Content-Type: application/json
+Authorization: fake-jwt-token
+
+{
+    "title": "DurianPy: Python Tricks They Don't Teach You in School",
+    "type": "Event",
+    "author": "Admin",
+    "content": "Write-up coming soon...",
+    "image_url": "[https://placehold.co/600x400?text=Python+Tricks](https://placehold.co/600x400?text=Python+Tricks)",
+    "tags": ["Assembly", "Community"]
+}
+
+### 12. Cloud Catchup
+POST {{baseUrl}}/articles
+Content-Type: application/json
+Authorization: fake-jwt-token
+
+{
+    "title": "Cloud Catchup: AWS re:Invent 2025 Recap",
+    "type": "Event",
+    "author": "Admin",
+    "content": "Write-up coming soon...",
+    "image_url": "[https://placehold.co/600x400?text=Cloud+Catchup](https://placehold.co/600x400?text=Cloud+Catchup)",
+    "tags": ["Assembly", "Community"]
+}
+
+### ---------------------------------------------------
+### PROJECTS
+### ---------------------------------------------------
+
+### 13. Quack Project
+POST {{baseUrl}}/articles
+Content-Type: application/json
+Authorization: fake-jwt-token
+
+{
+    "title": "Quack",
+    "type": "Project",
+    "author": "Feevol Into",
+    "content": "Project details coming soon...",
+    "image_url": "[https://placehold.co/600x400?text=Project+Quack](https://placehold.co/600x400?text=Project+Quack)",
+    "tags": ["Web App", "System"]
 }
